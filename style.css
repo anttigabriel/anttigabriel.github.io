@@ -1,0 +1,398 @@
+/* Base */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #87CEEB 0%, #98D8E8 25%, #B0E0E6 50%, #87CEEB 75%, #87CEEB 100%);
+  color: #000000;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Cloud animations */
+@keyframes float {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  33% { transform: translateX(30px) translateY(-10px); }
+  66% { transform: translateX(-20px) translateY(5px); }
+}
+
+@keyframes drift {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(calc(100vw + 100px)); }
+}
+
+/* Cloud styles */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  animation: float 6s ease-in-out infinite, drift 60s linear infinite;
+}
+
+.cloud:before {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+}
+
+.cloud:after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+}
+
+/* Individual cloud shapes */
+.cloud1 {
+  width: 80px;
+  height: 40px;
+  top: 20%;
+  animation-delay: 0s;
+}
+
+.cloud1:before {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 10px;
+}
+
+.cloud1:after {
+  width: 60px;
+  height: 40px;
+  top: -15px;
+  right: 10px;
+}
+
+.cloud2 {
+  width: 100px;
+  height: 50px;
+  top: 15%;
+  animation-delay: -3s;
+}
+
+.cloud2:before {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: 15px;
+}
+
+.cloud2:after {
+  width: 70px;
+  height: 50px;
+  top: -20px;
+  right: 15px;
+}
+
+.cloud3 {
+  width: 70px;
+  height: 35px;
+  top: 25%;
+  animation-delay: -6s;
+}
+
+.cloud3:before {
+  width: 45px;
+  height: 45px;
+  top: -22px;
+  left: 8px;
+}
+
+.cloud3:after {
+  width: 55px;
+  height: 35px;
+  top: -12px;
+  right: 8px;
+}
+
+.cloud4 {
+  width: 90px;
+  height: 45px;
+  top: 10%;
+  animation-delay: -9s;
+}
+
+.cloud4:before {
+  width: 55px;
+  height: 55px;
+  top: -27px;
+  left: 12px;
+}
+
+.cloud4:after {
+  width: 65px;
+  height: 45px;
+  top: -17px;
+  right: 12px;
+}
+
+.cloud5 {
+  width: 85px;
+  height: 42px;
+  top: 30%;
+  animation-delay: -12s;
+}
+
+.cloud5:before {
+  width: 52px;
+  height: 52px;
+  top: -26px;
+  left: 11px;
+}
+
+.cloud5:after {
+  width: 62px;
+  height: 42px;
+  top: -16px;
+  right: 11px;
+}
+
+.cloud6 {
+  width: 75px;
+  height: 38px;
+  top: 5%;
+  animation-delay: -15s;
+}
+
+.cloud6:before {
+  width: 48px;
+  height: 48px;
+  top: -24px;
+  left: 9px;
+}
+
+.cloud6:after {
+  width: 58px;
+  height: 38px;
+  top: -14px;
+  right: 9px;
+}
+
+/* Sun styles */
+.sun {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #FFD700;
+  border-radius: 50%;
+  top: 8%;
+  right: 15%;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  animation: sunGlow 3s ease-in-out infinite alternate;
+}
+
+
+@keyframes sunGlow {
+  0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+  100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4); }
+}
+
+
+
+
+/* Layout */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar (removed, kept for reference) */
+.sidebar {
+  width: 50px;
+  padding: 1.5rem;
+  background: #1c8c8c; /* subtle contrast */
+  /*background: rgba(0, 0, 0, 0.15); /* subtle contrast */
+}
+
+.sidebar h1 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 0.5rem 0;
+}
+
+.sidebar a {
+  color: #ffffff;
+  text-decoration: none;
+  
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}
+
+.intro {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 0 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.intro p {
+  margin: 0;
+  flex: 1;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  border: 3px solid #00008b; /* darkblue ring */
+  flex: 0 0 auto;
+}
+
+.content-box {
+  width: 100%;
+  max-width: 720px;
+  border: 3px solid #00008b; /* darkblue edges */
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.content-box + .content-box {
+  margin-top: 1rem;
+}
+
+/* Inline menu styles */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.menu a {
+  color: #00008b;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+.content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.content h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.posts {
+  list-style: none;
+  padding: 0;
+}
+
+.posts li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.posts a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.posts a:hover {
+  text-decoration: underline;
+}
+
+.date {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Blog post previews */
+.blog-post-preview {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: none;
+}
+
+.blog-post-preview:last-child {
+  border-bottom: none;
+}
+
+.blog-post-preview h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.blog-post-preview h3 a {
+  color: #00008b;
+  text-decoration: none;
+}
+
+.blog-post-preview h3 a:hover {
+  text-decoration: underline;
+}
+
+.blog-post-preview .date {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.4rem;
+}
+
+.blog-post-preview .preview {
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Even more compact layout for recent lists on the front page */
+.compact-list .blog-post-preview {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.compact-list .blog-post-preview .date {
+  margin-bottom: 0.2rem;
+}
+
+/* Slightly larger side gutters on small screens */
+@media (max-width: 640px) {
+  .content {
+    padding: 2rem 2.75rem;
+  }
+  .intro {
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-width: 2px;
+  }
+}
