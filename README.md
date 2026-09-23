@@ -1,2 +1,2 @@
-# codeandy.github.io
+# anttigabriel.github.io
 Personal blog of mine.
