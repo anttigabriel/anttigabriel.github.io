@@ -147,3 +147,34 @@ function loadRecentWritings() {
 }
 
 document.addEventListener("DOMContentLoaded", loadRecentWritings);
+
+// Load an individual blog post when post.html is opened.
+async function loadBlogPost() {
+  const container = document.getElementById("blog-post-content");
+  if (!container) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get("file");
+
+  if (!file || !file.endsWith(".md") || file.includes("..")) {
+    container.textContent = "Invalid or missing post filename.";
+    return;
+  }
+
+  try {
+    const response = await fetch(file);
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const markdown = await response.text();
+    container.innerHTML = markdownToHtml(markdown);
+  } catch (error) {
+    console.error("Could not load blog post:", error);
+    container.textContent =
+      "Could not load this post. Please check that the Markdown file exists.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadBlogPost);
