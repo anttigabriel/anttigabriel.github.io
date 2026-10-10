@@ -1,1 +1,149 @@
 
+/*
+ * Blog configuration.
+ * Add each new article to this list when you publish it.
+ */
+const blogPosts = [
+  {
+    title: "My First Blog Post",
+    date: "2026-10-10",
+    file: "posts/my-first-post.md",
+    excerpt: "Hello world..."
+  }
+];
+
+// Escape HTML so ordinary Markdown text is not interpreted as HTML.
+function escapeHtml(text) {
+  return text.replace(/[&<>"']/g, function (char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
+// Convert basic inline Markdown.
+function inlineMarkdown(text) {
+  let result = escapeHtml(text);
+
+  result = result.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
+
+  result = result.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  result = result.replace(/\*(.+?)\*/g, "<em>$1</em>");
+  result = result.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+  return result;
+}
+
+// Convert Markdown blocks into HTML.
+function markdownToHtml(markdown) {
+  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  const output = [];
+  let paragraph = [];
+  let inList = false;
+
+  function flushParagraph() {
+    if (paragraph.length) {
+      output.push(
+        "<p>" +
+        inlineMarkdown(paragraph.join(" ")) +
+        "</p>"
+      );
+      paragraph = [];
+    }
+  }
+
+  function closeList() {
+    if (inList) {
+      output.push("</ul>");
+      inList = false;
+    }
+  }
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+
+    if (!trimmed) {
+      flushParagraph();
+      closeList();
+      continue;
+    }
+
+    const heading = trimmed.match(/^(#{1,6})\s+(.+)$/);
+
+    if (heading) {
+      flushParagraph();
+      closeList();
+      const level = heading[1].length;
+      output.push(
+        `<h${level}>${inlineMarkdown(heading[2])}</h${level}>`
+      );
+      continue;
+    }
+
+    const item = trimmed.match(/^[-*]\s+(.+)$/);
+
+    if (item) {
+      flushParagraph();
+
+      if (!inList) {
+        output.push("<ul>");
+        inList = true;
+      }
+
+      output.push(`<li>${inlineMarkdown(item[1])}</li>`);
+      continue;
+    }
+
+    const quote = trimmed.match(/^>\s?(.*)$/);
+
+    if (quote) {
+      flushParagraph();
+      closeList();
+      output.push(
+        `<blockquote><p>${inlineMarkdown(quote[1])}</p></blockquote>`
+      );
+      continue;
+    }
+
+    paragraph.push(trimmed);
+  }
+
+  flushParagraph();
+  closeList();
+
+  return output.join("\n");
+}
+
+// Populate the home page's recent writings list.
+function loadRecentWritings() {
+  const container = document.getElementById("recent-writings");
+
+  if (!container) return;
+
+  if (blogPosts.length === 0) {
+    container.innerHTML = "<p>No posts published yet.</p>";
+    return;
+  }
+
+  container.innerHTML = blogPosts.map(function (post) {
+    const link =
+      "post.html?file=" + encodeURIComponent(post.file);
+
+    return `
+      <article class="blog-post-preview">
+        <h3><a href="${link}">${escapeHtml(post.title)}</a></h3>
+        <span class="date">${escapeHtml(post.date)}</span>
+        <p class="preview">${escapeHtml(post.excerpt)}</p>
+      </article>
+    `;
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", loadRecentWritings);
