@@ -44,34 +44,10 @@
       </div>
     </main>
   </div>
-
-  <script>
-    // Load individual blog post
-    async function loadBlogPost() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const fileName = urlParams.get('file');
-      
-      if (!fileName) {
-        document.getElementById('blog-post-content').innerHTML = '<p>No post specified.</p>';
-        return;
-      }
-
-      try {
-        const response = await fetch(fileName);
-        if (response.ok) {
-          const markdown = await response.text();
-          const html = markdownToHtml(markdown);
-          document.getElementById('blog-post-content').innerHTML = html;
-        } else {
-          document.getElementById('blog-post-content').innerHTML = '<p>Post not found.</p>';
-        }
-      } catch (error) {
-        document.getElementById('blog-post-content').innerHTML = '<p>Error loading post.</p>';
-      }
-    }
-
-    // Load post when page loads
-    document.addEventListener('DOMContentLoaded', loadBlogPost);
+  
+  <script
+    src="markdown-reader.js">
   </script>
+ 
 </body>
 </html>
