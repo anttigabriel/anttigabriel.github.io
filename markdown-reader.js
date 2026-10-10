@@ -7,7 +7,7 @@ const blogPosts = [
   {
     title: "My First Blog Post",
     date: "2026-10-10",
-    file: "posts/my-first-post.md",
+    file: "posts/the-first-post-of-this-blog.md",
     excerpt: "Hello world..."
   }
 ];
