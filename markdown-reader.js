@@ -5,18 +5,18 @@
  */
 const blogPosts = [
   {
+    title: "Oak Forest Walk",
+    date: "2026-10-11",
+    file: "posts/oak-forest-walk.md",
+    excerpt: "I took a walk today. I visited a small protected oak forest..."
+  }
+  {
     title: "My First Blog Post",
     date: "2026-10-10",
     file: "posts/the-first-post-of-this-blog.md",
     excerpt: "Hey there and welcome to my blog..."
   }
 
-  {
-    title: "Oak Forest Walk",
-    date: "2026-10-11",
-    file: "posts/oak-forest-walk.md",
-    excerpt: "I took a walk today. I visited a small protected oak forest..."
-  }
 ];
 
 // Escape HTML so ordinary Markdown text is not interpreted as HTML.
