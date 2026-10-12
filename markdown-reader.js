@@ -4,6 +4,14 @@
  * Add each new article to this list when you publish it.
  */
 const blogPosts = [
+
+  {
+    title: "What I Want This Blog To Have",
+    date: "2026-10-12",
+    file: "what-i-want-this-blog-to-have.md",
+    excerpt: "I took a walk today. My plan was to go to a bridge..."
+  },
+  
   {
     title: "Oak Forest Walk",
     date: "2026-10-11",
