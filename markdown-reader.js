@@ -6,7 +6,7 @@
 const blogPosts = [
 
     {
-    title: "Nine Hours on One Exercise",
+    title: "Nine Hours On One Exercise",
     date: "2026-10-29",
     file: "posts/nine-hours-on-one-exercise.md",
     excerpt: "On Tuesday I spent five 'pure' hours working on an exercise..."
