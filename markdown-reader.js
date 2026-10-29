@@ -5,6 +5,13 @@
  */
 const blogPosts = [
 
+    {
+    title: "Nine Hours on One Exercise",
+    date: "2026-10-29",
+    file: "posts/nine-hours-on-one-exercise.md",
+    excerpt: "On Tuesday I spent five 'pure' hours working on an exercise..."
+  },
+
   {
     title: "What I Want This Blog To Have",
     date: "2026-10-12",
