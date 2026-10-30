@@ -37,7 +37,9 @@ As mentioned earlier, the task was to write an algorithm where there two integer
 I ended up using a following recipe to complete the task:
 
 1. The first step is to create a HashSet and put the elements of array B into it. HashSet allows us to access elements with O(1) time complexity.  
+
 2. The second step is to create an ArrayList, where we append the returnable elements one by one.  
+
 3. The third step is that we start iterating through array A. At every step of inspecting the elements, we check whether the element being inspected in A can be found from HashSet that contains all the B's values. If the HashSet does NOT contain the element, it means it can only be found from A. We find out it to be the exactly the kind of value we're looking for. We therefore append it to the ArrayList.
 
 We collect the needed values to ArrayList because in ArrayList we can just append stuff into it with a good time complexity, O(1) if I'm not wrong. Adding them to an array would be not as handy because arrays are a fixed size, meaning that we'd have to kind of re-create the array each time an element is added into it, and it'd have to find a new location from the memory each time. However, we have to return the result in array, according to the exercise's instructions, so we convert the ArrayList to array at the end.
